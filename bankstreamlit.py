@@ -1,12 +1,7 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 from datetime import date, datetime, timedelta
-import matplotlib.pyplot as plt
-import matplotlib.ticker as mtick
-import numpy as np
 import plotly.express as px
-import plotly.figure_factory as ff
 
 st.title('Visualize Your Bank Statement')
 
