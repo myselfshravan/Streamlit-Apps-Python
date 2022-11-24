@@ -13,7 +13,7 @@ st.title('Visualize Your Bank Statement')
 agree = st.checkbox('Use Demo Data')
 
 if agree:
-    uploaded_file = 'https://github.com/myselfshravan/Python/blob/main/statement23.xls'
+    uploaded_file = 'https://github.com/myselfshravan/Python/files/10087176/statement23.xls'
 else:
     uploaded_file = st.file_uploader("Choose a Excel file of HDFC Bank Statement", type="xls")
 
