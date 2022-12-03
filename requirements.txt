@@ -2,3 +2,11 @@ pandas==1.4.3
 streamlit==1.15.1
 plotly==5.11.0
 xlrd==2.0.1
+beautifulsoup4
+datetime
+threading
+time
+base64
+bs4
+requests
+typing
