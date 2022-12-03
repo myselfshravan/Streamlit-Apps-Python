@@ -88,9 +88,6 @@ class SisScraper(Scraper):
                 dat.append(payload['passwd'])
                 return payload['passwd']
 
-    def __enter__(self):
-        return self
-
 
 if __name__ == '__main__':
     st.title('Find your DOB')
