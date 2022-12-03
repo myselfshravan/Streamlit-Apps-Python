@@ -8,24 +8,6 @@ from threading import Thread
 import streamlit as st
 
 
-def cached(cache):
-    def cashee(func):
-        func.cache = cache
-
-        @wraps(func)
-        def wrapper(self, *args):
-            try:
-                r = func.cache[args]
-                print(f"[Log] Using Cache")
-                return r
-            except KeyError:
-                func.cache[args] = result = func(self, *args)
-                return result
-
-        return wrapper
-
-    return cashee
-
 
 class SisScraper(Scraper):
     @staticmethod
@@ -43,17 +25,9 @@ class SisScraper(Scraper):
             "ea07d18ec2752bcca07e20a852d96337": "1"
         }
 
-    @staticmethod
+
     def gen_usn(year: str, dept: str, i: int, head="1MS") -> str:
         return f"{head}{year}{dept}{i:03}"
-
-    @staticmethod
-    def get_cache():
-        try:
-            with open('cache1er2344.bin', 'rb') as file:
-                return pickle.load(file)
-        except FileNotFoundError:
-            return {}
 
     def __init__(self, URL="https://parents.msrit.edu/"):
         self.URL = URL
@@ -83,7 +57,7 @@ class SisScraper(Scraper):
         body = soup.body
         if not body.find(id="username"): return body
 
-    @cached(get_cache())
+
     def get_dob(self, usn) -> Union[str, None]:
         join_year = int("20" + usn[3:5])
         for year in [y := join_year - 18, y - 1, y + 1]:
@@ -116,10 +90,6 @@ class SisScraper(Scraper):
 
     def __enter__(self):
         return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        with open('cache1er2344.bin', 'wb') as file:
-            pickle.dump(self.get_dob.cache, file)
 
 
 if __name__ == '__main__':
